@@ -12,11 +12,12 @@ public class DashboardPO extends BaseAction {
         this.driver = driver;
     }
 
-    public void clickToMenuItemByName(String menuName) {
-        goToMenuItemByName(menuName);
+    public void clickToMenuBasicInformation() {
+        goToMenuItemByName("Basic Information");
     }
 
-    public boolean isExtendButtonDisplayed() {
-        return isElementDisplayed(driver, DashboardPUI.EXTEND_BUTTON);
+
+    public void clickToMenuContractManagement() {
+        goToMenuItemByName("Contract Management");
     }
 }

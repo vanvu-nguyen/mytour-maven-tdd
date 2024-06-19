@@ -2,9 +2,7 @@ package pageObjects.adminSite;
 
 import PageUIs.adminSite.DepartmentPUI;
 import commons.BaseAction;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 
 public class DepartmentPO extends BaseAction {
     private WebDriver driver;
@@ -14,12 +12,12 @@ public class DepartmentPO extends BaseAction {
         this.driver = driver;
     }
 
-    public void sendkeyToDepartmentCode(String keyToSend) {
+    public void sendkeyToDepartmentCodeInput(String keyToSend) {
         waitForElementClickable(driver, DepartmentPUI.DEPARTMENT_CODE_TEXTBOX);
         senkeyToElement(driver, DepartmentPUI.DEPARTMENT_CODE_TEXTBOX, keyToSend);
     }
 
-    public void sendkeyToDepartmentName(String keyToSend) {
+    public void sendkeyToDepartmentNameInput(String keyToSend) {
         waitForElementClickable(driver, DepartmentPUI.DEPARTMENT_NAME_TEXTBOX);
         senkeyToElement(driver, DepartmentPUI.DEPARTMENT_NAME_TEXTBOX, keyToSend);
     }
@@ -29,10 +27,7 @@ public class DepartmentPO extends BaseAction {
         clickToElement(driver, DepartmentPUI.SAVE_DEPARTMENT_BUTTON);
     }
 
-    public void clickToCloseSaveSuccessModal() {
-        waitForElementClickable(driver, DepartmentPUI.SUCCESS_NOTI_CLOSE_BUTTON);
-        clickToElement(driver, DepartmentPUI.SUCCESS_NOTI_CLOSE_BUTTON);
-    }
+
 
     public void senkeyToDepartmentCodeSearchbox(String keyToSend) {
         waitForElementClickable(driver, DepartmentPUI.DEPARTMENT_CODE_SEARCHBOX);

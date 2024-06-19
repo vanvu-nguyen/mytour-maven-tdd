@@ -1,4 +1,4 @@
-package pojoData;
+package pojoData.adminSite;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -192,7 +192,7 @@
                 <configuration>
                     <!-- Run TestNG xml file -->
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/RunCmsBidv-Master.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/RunCmsBidvUser-Master.xml</suiteXmlFile>
                     </suiteXmlFiles>
 
                     <!-- Argument -->

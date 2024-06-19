@@ -3,7 +3,7 @@ package pageObjects.adminSite;
 import PageUIs.adminSite.LoginPUI;
 import commons.BaseAction;
 import commons.GlobalConstants;
-import commons.PageGeneratorManager;
+import pageGenerator.AdminPageGeneratorManager;
 import org.openqa.selenium.WebDriver;
 
 public class LoginPO extends BaseAction {
@@ -14,15 +14,7 @@ public class LoginPO extends BaseAction {
         this.driver = driver;
     }
 
-    public DashboardPO SuperAdminLogin() {
-        waitForElementVisible(driver, LoginPUI.USER_ID_TEXTBOX);
-        senkeyToElement(driver, LoginPUI.USER_ID_TEXTBOX, GlobalConstants.getGlobalConstants().getAdminUsername());
-        waitForElementVisible(driver, LoginPUI.PASSWORD_TEXTBOX);
-        senkeyToElement(driver, LoginPUI.PASSWORD_TEXTBOX, GlobalConstants.getGlobalConstants().getAdminPassword());
-        waitForElementClickable(driver, LoginPUI.LOGIN_BUTTON);
-        clickToElement(driver, LoginPUI.LOGIN_BUTTON);
-        return PageGeneratorManager.getDashboardPage(driver);
-    }
+
 
     public void userLogin(String userName, String passWord) {
         waitForElementVisible(driver, LoginPUI.USER_ID_TEXTBOX);
@@ -40,6 +32,10 @@ public class LoginPO extends BaseAction {
         senkeyToElement(driver, LoginPUI.CONFIRM_PASSWORD_TEXTBOX, GlobalConstants.getGlobalConstants().getCommon_password());
         waitForElementClickable(driver, LoginPUI.APPLY_BUTTON);
         clickToElement(driver, LoginPUI.APPLY_BUTTON);
-        return PageGeneratorManager.getDashboardPage(driver);
+        return AdminPageGeneratorManager.getAdminDashboardPage(driver);
+    }
+
+    public void selectEnglishLanguage() {
+        selectItemInCustomDropdown(driver, LoginPUI.LANGUAGE_DROPDOWN_PARENT_LOCATOR, LoginPUI.LANGUAGE_DROPDOWN_CHILD_LOCATOR, "English");
     }
 }

@@ -518,7 +518,7 @@ public class BasePage extends BaseTest {
         }
         String finalFileName = fullFileName.trim();
         System.out.println(finalFileName);
-        getElement(driver, "//input[@name='files[]']").sendKeys(finalFileName);
+        getElement(driver, "//input[@id='image']").sendKeys(finalFileName);
     }
 
 

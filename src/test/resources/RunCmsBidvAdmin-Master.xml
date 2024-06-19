@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="CmsBidv" parallel="tests" thread-count="2">
+<suite name="CmsBidv" parallel="none">
 
     <listeners>
         <listener class-name="commons.MethodListener"/>
@@ -9,24 +9,25 @@
 
     <parameter name="server" value="local"/>
     <parameter name="envName" value="dev"/>
+    <parameter name="subSystem" value="admin"/>
 
-    <!--<test verbose="2" preserve-order="true" name="Run on Chrome">
+    <test verbose="2" preserve-order="true" name="Run on Chrome">
         <parameter name="browser" value="chrome"/>
-        &lt;!&ndash;<parameter name="ipAddress" value="localhost"/>
-        <parameter name="portNumber" value="4444"/>&ndash;&gt;
-        <classes>
-            <class name="adminSite.infoPlus.cmsBidv.basicInformation.BasicInformation_01_CreateNewUserWithNewDepartment"/>
-        </classes>
-    </test>-->
-
-    <test verbose="2" preserve-order="true" name="Run on Firefox">
-        <parameter name="browser" value="firefox"/>
         <!--<parameter name="ipAddress" value="localhost"/>
         <parameter name="portNumber" value="4444"/>-->
         <classes>
-            <class name="adminSite.infoPlus.cmsBidv.basicInformation.BasicInformation_01_CreateNewUserWithNewDepartment"/>
+            <class name="adminSite.infoPlus.cmsBidv.basicInformation.ContractManagement_01_CreateNewContractWithNewCustomer"/>
         </classes>
     </test>
+
+    <!--<test verbose="2" preserve-order="true" name="Run on Firefox">
+        <parameter name="browser" value="firefox"/>
+        &lt;!&ndash;<parameter name="ipAddress" value="localhost"/>
+        <parameter name="portNumber" value="4444"/>&ndash;&gt;
+        <classes>
+            <class name="adminSite.infoPlus.cmsBidv.basicInformation.ContractManagement_01_CreateNewContractWithNewCustomer"/>
+        </classes>
+    </test>-->
 
     <!--<test verbose="2" preserve-order="true" name="Run on Edge">
         <parameter name="browser" value="edge"/>

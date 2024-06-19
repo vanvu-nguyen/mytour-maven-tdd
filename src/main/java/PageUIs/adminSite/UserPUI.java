@@ -6,7 +6,7 @@ public class UserPUI {
     public static final String USERNAME_TEXTBOX = "XPATH=//input[@id='userNm']";
     public static final String USER_GROUP_DROPDOWN_PARENT_LOCATOR = "XPATH=//input[@id='authCd']";
     public static final String USER_GROUP_DROPDOWN_CHILD_LOCATOR = "XPATH=//div[@class='ant-select-item-option-content']";
-    public static final String DEPARTMENT_DROPDOWN_PARENT_LOCATOR = "XPATH=//input[@id='deptCd']";
+    public static final String DEPARTMENT_DROPDOWN_PARENT_LOCATOR = "XPATH=//input[@id='deptId']";
     public static final String DEPARTMENT_DROPDOWN_CHILD_LOCATOR = "XPATH=//div[contains(@class,'ant-select-item-option')]";
     public static final String USER_MOBILE_TEXTBOX = "XPATH=//input[@id='telNo']";
     public static final String USER_EMAIL_TEXTBOX = "XPATH=//input[@id='email']";

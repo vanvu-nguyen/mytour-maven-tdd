@@ -2,10 +2,7 @@ package pageObjects.supportPlatform;
 
 import PageUIs.supportPlatform.TempMailPUI;
 import commons.BaseAction;
-import commons.PageGeneratorManager;
 import org.openqa.selenium.WebDriver;
-import pageObjects.adminSite.LoginPO;
-import pageObjects.adminSite.UserPO;
 
 public class TempMailPO extends BaseAction {
     private WebDriver driver;
@@ -28,10 +25,7 @@ public class TempMailPO extends BaseAction {
         return getDefaultAttributeValue(driver, TempMailPUI.GENERATED_EMAIL_ADDRESS, "value");
     }
 
-    public UserPO switchToCmsAdminPage(String siteTitle) {
-        switchToWindowByTitle(driver, siteTitle);
-        return PageGeneratorManager.getUserPage(driver);
-    }
+
 
     public void openLatestMail() {
         waitForElementClickable(driver, TempMailPUI.LATEST_MAIL);
@@ -43,8 +37,5 @@ public class TempMailPO extends BaseAction {
         return getElementText(driver, TempMailPUI.PASSWORD_INFO);
     }
 
-    public LoginPO switchToCmsLoginPage(String cmsTitle) {
-        switchToWindowByTitle(driver, cmsTitle);
-        return PageGeneratorManager.getLoginPage(driver);
-    }
+
 }

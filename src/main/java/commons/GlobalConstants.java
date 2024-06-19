@@ -31,7 +31,7 @@ public class GlobalConstants {
 
     // download/upload file folder
     private final String downloadPath = relativeProjectPath + File.separator + "downloadFiles" + File.separator;
-    private final String uploadPath = relativeProjectPath + File.separator + "uploadFiles" + File.separator;
+    private final String uploadPath = relativeProjectPath + File.separator + "uploadImage" + File.separator;
 
     // Browser extention folder
     private final String browserExtentionPath = relativeProjectPath + File.separator + "browserExtension" + File.separator;
@@ -56,5 +56,7 @@ public class GlobalConstants {
     // Wordpress (DB name: )
     private final String username = "";
     private final String password = "";
+
+
 
 }

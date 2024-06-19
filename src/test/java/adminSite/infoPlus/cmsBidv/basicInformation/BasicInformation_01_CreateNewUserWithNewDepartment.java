@@ -1,9 +1,8 @@
 package adminSite.infoPlus.cmsBidv.basicInformation;
 
-import PageUIs.adminSite.LoginPUI;
 import com.github.javafaker.Faker;
 import commons.BaseTest;
-import commons.PageGeneratorManager;
+import pageGenerator.AdminPageGeneratorManager;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -13,8 +12,8 @@ import pageObjects.adminSite.LoginPO;
 import pageObjects.adminSite.UserPO;
 
 import pageObjects.supportPlatform.TempMailPO;
-import pojoData.DepartmentInfo;
-import pojoData.UserInfo;
+import pojoData.adminSite.DepartmentInfo;
+import pojoData.adminSite.UserInfo;
 import reportConfig.ExtentTestManager;
 
 import java.lang.reflect.Method;
@@ -41,34 +40,34 @@ public class BasicInformation_01_CreateNewUserWithNewDepartment extends BaseTest
     private String originUserPassword;
 
 
-    @Parameters({"browser", "envName", "server", "ipAddress", "portNumber"})
+    @Parameters({"browser", "envName", "server", "ipAddress", "portNumber", "subSystem"})
     @BeforeClass
-    public void beforeClass(@Optional("") String browser,@Optional("") String envName,@Optional("") String server,@Optional("") String ipAddress,@Optional("") String portNumber) {
-        driver = getBrowserDriver(browser, envName, server, ipAddress, portNumber);
+    public void beforeClass(@Optional("") String browser,@Optional("") String envName,@Optional("") String server,@Optional("") String ipAddress,@Optional("") String portNumber,@Optional("") String subSystem) {
+        driver = getBrowserDriver(browser, envName, server, ipAddress, portNumber, subSystem);
         cmsTitle = driver.getTitle();
         this.browser = browser;
-        loginPage = PageGeneratorManager.getLoginPage(driver);
-        loginPage.selectItemInCustomDropdown(driver, LoginPUI.LANGUAGE_DROPDOWN_PARENT_LOCATOR, LoginPUI.LANGUAGE_DROPDOWN_CHILD_LOCATOR, "English");
+        loginPage = AdminPageGeneratorManager.getAdminLoginPage(driver);
+        loginPage.selectEnglishLanguage();
     }
 
     @Test
     public void CreateNewUserWithNewDepartment_01_SuperAdminLogin(Method method) {
         ExtentTestManager.startTest(method.getName() + " - Run on " + browser.toUpperCase(), "SuperAdminLogin");
-        dashboardPage = loginPage.SuperAdminLogin();
+        dashboardPage = loginPage.superAdminLogin();
     }
 
     @Test
     public void CreateNewUserWithNewDepartment_02_CreateNewDepartment(Method method) {
         ExtentTestManager.startTest(method.getName() + " - Run on " + browser.toUpperCase(), "CreateNewDepartment");
-        dashboardPage.clickToMenuItemByName("Basic Information");
-        departmentPage = dashboardPage.clickToSubmenuDepartment();
+        dashboardPage.clickToMenuBasicInformation();
+        departmentPage = dashboardPage.clickToSubmenuDepartmentManagement();
         departmentInfo = DepartmentInfo.getDepartmentInfo();
         departmentInfo.setDepartmentCode(String.valueOf(faker.number().randomNumber(5, true)));
         departmentCode = departmentInfo.getDepartmentCode();
-        departmentPage.sendkeyToDepartmentCode(departmentCode);
+        departmentPage.sendkeyToDepartmentCodeInput(departmentCode);
         departmentInfo.setDepartmentName(String.valueOf(faker.team().name()));
         departmentName = departmentInfo.getDepartmentName();
-        departmentPage.sendkeyToDepartmentName(departmentName);
+        departmentPage.sendkeyToDepartmentNameInput(departmentName);
         departmentPage.clickToSaveDepartment();
         departmentPage.clickToCloseSaveSuccessModal();
         //Verify
@@ -104,7 +103,7 @@ public class BasicInformation_01_CreateNewUserWithNewDepartment extends BaseTest
         userPage.clickToCloseSaveSuccessModal();
         //Verify
         userPage.senkeyToUserIdSearchbox(userId);
-        userPage.clickToSearchButton();
+        userPage.clickToSearchUserButton();
         Assert.assertTrue(userPage.isUserIdListed(userId));
     }
 
@@ -112,19 +111,18 @@ public class BasicInformation_01_CreateNewUserWithNewDepartment extends BaseTest
     public void CreateNewUserWithNewDepartment_04_NewUserLogin(Method method) {
         ExtentTestManager.startTest(method.getName() + " - Run on " + browser.toUpperCase(), "NewUserLogin");
         loginPage = userPage.logOut();
-        tempMailPage = loginPage.switchToTempSite(tempMailTitle);
+        tempMailPage = loginPage.switchToTempMailSite(tempMailTitle);
         tempMailPage.openLatestMail();
         originUserPassword = tempMailPage.getPasswordInfo();
-        loginPage = tempMailPage.switchToCmsLoginPage(cmsTitle);
+        loginPage = tempMailPage.switchToCmsPage(cmsTitle);
         loginPage.userLogin(userId, originUserPassword);
         dashboardPage = loginPage.resetPassword();
         //Verify
         Assert.assertTrue(dashboardPage.isExtendButtonDisplayed());
     }
 
-    //@AfterClass(alwaysRun = true)
+    @AfterClass(alwaysRun = true)
     public void afterClass() {
         closeBrowser(driver);
     }
-
 }

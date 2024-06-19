@@ -28,7 +28,7 @@ public class BaseTest {
         log = LogManager.getLogger(getClass());
     }
 
-    protected WebDriver getBrowserDriver(String browser, String envName, String server, String ipAddress, String portNumber) {
+    protected WebDriver getBrowserDriver(String browser, String envName, String server, String ipAddress, String portNumber, String subSystem) {
         BrowserList browserName = BrowserList.valueOf(browser.toUpperCase());
         try {
             switch (server) {
@@ -47,7 +47,13 @@ public class BaseTest {
                 default: this.driver.set(new LocalFactory(browser).createDriver());
             }
             driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.getGlobalConstants().getLongTimeout()));
-            driver.get().get(getUrlWithGivenServer(envName));
+            switch (subSystem) {
+                case "admin": driver.get().get(getUrlWithGivenServerOnAdmin(envName));
+                    break;
+                case "user": driver.get().get(getUrlWithGivenServerOnUser(envName));
+                    break;
+                default: driver.get().get(getUrlWithGivenServerOnAdmin(envName));
+            }
             driver.get().manage().window().maximize();
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -55,13 +61,28 @@ public class BaseTest {
         return driver.get();
     }
 
-    protected String getUrlWithGivenServer(String server) {
+    protected String getUrlWithGivenServerOnAdmin(String server) {
         String url;
         EnvironmentList serverName = EnvironmentList.valueOf(server.toUpperCase());
         switch (serverName) {
             case DEV: {url = "https://devbidv-admin.infocms.com.vn/";
                 break;}
-            case TEST: {url = "https://uat-bidv.infocms.com.vn/";
+            case TEST: {url = "https://uat-bidv-admin.infocms.com.vn/";
+                break;}
+            case STAGING: {url = "";
+                break;}
+            default: throw new RuntimeException("Wrong environment name");
+        }
+        return url;
+    }
+
+    protected String getUrlWithGivenServerOnUser(String server) {
+        String url;
+        EnvironmentList serverName = EnvironmentList.valueOf(server.toUpperCase());
+        switch (serverName) {
+            case DEV: {url = "https://devbidv.infocms.com.vn/account/login";
+                break;}
+            case TEST: {url = "https://uat-bidv.infocms.com.vn/account/login";
                 break;}
             case STAGING: {url = "";
                 break;}

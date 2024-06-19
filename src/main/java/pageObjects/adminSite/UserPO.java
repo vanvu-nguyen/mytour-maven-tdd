@@ -1,13 +1,8 @@
 package pageObjects.adminSite;
 
-import PageUIs.adminSite.DepartmentPUI;
 import PageUIs.adminSite.UserPUI;
 import commons.BaseAction;
-import commons.PageGeneratorManager;
 import org.openqa.selenium.WebDriver;
-import pageObjects.supportPlatform.TempMailPO;
-
-import java.awt.event.WindowAdapter;
 
 public class UserPO extends BaseAction {
     private WebDriver driver;
@@ -22,10 +17,7 @@ public class UserPO extends BaseAction {
         clickToElement(driver, UserPUI.REGISTER_USER_BUTTON);
     }
 
-    public TempMailPO openTempMailSite() {
-        goToTempMailSite(driver);
-        return PageGeneratorManager.getTempMailPage(driver);
-    }
+
 
     public void senkeyToUserID(String userId) {
         waitForElementVisible(driver, UserPUI.USER_ID_TEXTBOX);
@@ -67,11 +59,6 @@ public class UserPO extends BaseAction {
         clickToElement(driver, UserPUI.SAVE_USER_BUTTON);
     }
 
-    public void clickToCloseSaveSuccessModal() {
-        waitForElementClickable(driver, UserPUI.SUCCESS_NOTI_CLOSE_BUTTON);
-        clickToElement(driver, UserPUI.SUCCESS_NOTI_CLOSE_BUTTON);
-    }
-
     public boolean isUserIdListed(String userId) {
         int previousColumnNumber = getListElementSize(driver, UserPUI.USER_ID_PREVIOUS_COLUMN);
         String orderOfUserIdColumn = String.valueOf(previousColumnNumber + 1);
@@ -84,7 +71,7 @@ public class UserPO extends BaseAction {
         senkeyToElement(driver, UserPUI.USER_ID_SEARCHBOX, userId);
     }
 
-    public void clickToSearchButton() {
+    public void clickToSearchUserButton() {
         waitForElementClickable(driver, UserPUI.SEARCH_BUTTON);
         clickToElement(driver, UserPUI.SEARCH_BUTTON);
     }
