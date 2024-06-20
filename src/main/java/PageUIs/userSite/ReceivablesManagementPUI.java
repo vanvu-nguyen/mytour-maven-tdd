@@ -25,4 +25,6 @@ public class ReceivablesManagementPUI {
     public static final String REF_ID_VALUE_ON_LIST = "XPATH=//tr[contains(@class,'dx-data-row')]//td[%s]";
     public static final String DUE_YEAR_PICKER = "XPATH=//div[not(contains(@class,'hidden'))]/div[@class='ant-picker-panel-container']//button[@class='ant-picker-year-btn']";
     public static final String DUE_MONTH_PICKER = "XPATH=//div[not(contains(@class,'hidden'))]/div[@class='ant-picker-panel-container']//button[@class='ant-picker-month-btn']";
+    public static final String TODAY_START_OPTION = "XPATH=//a[text()='Today']";
+    public static final String TODAY_DUE_OPTION = "XPATH=//div[not(contains(@class,'ant-picker-dropdown-hidden'))]/div[@class='ant-picker-panel-container']//td[contains(@class,'ant-picker-cell-today')]/div";
 }

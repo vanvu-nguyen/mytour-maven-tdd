@@ -85,6 +85,7 @@ public class BaseAction extends BasePage {
     }
 
     public void clickToCloseSaveSuccessModal() {
+        waitForElementVisible(driver, UserBaseElement.SUCCESS_MODAL);
         waitForElementClickable(driver, UserBaseElement.SUCCESS_MODAL_CLOSE_BUTTON);
         clickToElement(driver, UserBaseElement.SUCCESS_MODAL_CLOSE_BUTTON);
     }

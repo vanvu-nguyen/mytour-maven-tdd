@@ -122,13 +122,14 @@ public class PayerManagement_01_CreateNewPayerAndMapEcc extends BaseTest {
         refId = receivableInfo.getRefId();
         receivablesManagementPage.inputToRefId(refId);
         receivablesManagementPage.clickToRegisterReceivable();
+        receivablesManagementPage.clickToCloseSaveSuccessModal();
         //Verify
         receivablesManagementPage.inputToPayerNumberSearchbox(payerNumber);
         receivablesManagementPage.clickToSearchReceivableButton();
         Assert.assertTrue(receivablesManagementPage.isReceivableCreated(refId));
     }
 
-    //@AfterClass(alwaysRun = true)
+    @AfterClass(alwaysRun = true)
     public void afterClass() {
         closeBrowser(driver);
     }

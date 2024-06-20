@@ -3,9 +3,11 @@ package pageObjects.userSite;
 import PageUIs.userSite.ReceivablesManagementPUI;
 import commons.BaseAction;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 
 public class ReceivablesManagementPO extends BaseAction {
     private WebDriver driver;
+    private Actions actions;
     public ReceivablesManagementPO(WebDriver driver) {
         super(driver);
         this.driver = driver;
@@ -49,7 +51,7 @@ public class ReceivablesManagementPO extends BaseAction {
     public void selectTheStartDate() {
         waitForElementClickable(driver, ReceivablesManagementPUI.RECEIVABLE_START_DATE_PICKER);
         clickToElement(driver, ReceivablesManagementPUI.RECEIVABLE_START_DATE_PICKER);
-        waitForElementClickable(driver, ReceivablesManagementPUI.YEAR_PICKER);
+        /*waitForElementClickable(driver, ReceivablesManagementPUI.YEAR_PICKER);
         clickToElement(driver, ReceivablesManagementPUI.YEAR_PICKER);
         waitForElementClickable(driver, ReceivablesManagementPUI.DYNAMIC_YEAR_LOCATOR, "2024");
         clickToElement(driver, ReceivablesManagementPUI.DYNAMIC_YEAR_LOCATOR, "2024");
@@ -58,14 +60,18 @@ public class ReceivablesManagementPO extends BaseAction {
         waitForElementClickable(driver, ReceivablesManagementPUI.DYNAMIC_MONTH_LOCATOR, "Aug");
         clickToElement(driver, ReceivablesManagementPUI.DYNAMIC_MONTH_LOCATOR, "Aug");
         waitForElementClickable(driver, ReceivablesManagementPUI.DYNAMIC_DATE_LOCATOR, "18");
-        clickToElement(driver, ReceivablesManagementPUI.DYNAMIC_DATE_LOCATOR, "18");
+        clickToElement(driver, ReceivablesManagementPUI.DYNAMIC_DATE_LOCATOR, "18");*/
+        waitForElementClickable(driver, ReceivablesManagementPUI.TODAY_START_OPTION);
+        clickToElement(driver, ReceivablesManagementPUI.TODAY_START_OPTION);
     }
 
     public void selectTheDueDate() {
         waitForElementClickable(driver, ReceivablesManagementPUI.RECEIVABLE_DUE_DATE_PICKER);
         clickToElement(driver, ReceivablesManagementPUI.RECEIVABLE_DUE_DATE_PICKER);
+        sleepInSecond(3);
+        /*actions = new Actions(driver);
         waitForElementClickable(driver, ReceivablesManagementPUI.DUE_YEAR_PICKER);
-        clickToElement(driver, ReceivablesManagementPUI.DUE_YEAR_PICKER);
+        clickToElementByJS(driver, ReceivablesManagementPUI.DUE_YEAR_PICKER);
         waitForElementClickable(driver, ReceivablesManagementPUI.DYNAMIC_YEAR_LOCATOR, "2024");
         clickToElement(driver, ReceivablesManagementPUI.DYNAMIC_YEAR_LOCATOR, "2024");
         waitForElementClickable(driver, ReceivablesManagementPUI.DUE_MONTH_PICKER);
@@ -73,7 +79,12 @@ public class ReceivablesManagementPO extends BaseAction {
         waitForElementClickable(driver, ReceivablesManagementPUI.DYNAMIC_MONTH_LOCATOR, "Aug");
         clickToElement(driver, ReceivablesManagementPUI.DYNAMIC_MONTH_LOCATOR, "Aug");
         waitForElementClickable(driver, ReceivablesManagementPUI.DYNAMIC_DATE_LOCATOR, "28");
-        clickToElement(driver, ReceivablesManagementPUI.DYNAMIC_DATE_LOCATOR, "28");
+        clickToElement(driver, ReceivablesManagementPUI.DYNAMIC_DATE_LOCATOR, "28");*/
+        /*waitForElementClickable(driver, ReceivablesManagementPUI.TODAY_DUE_OPTION);
+        clickToElement(driver, ReceivablesManagementPUI.TODAY_DUE_OPTION);*/
+        waitForElementClickable(driver, ReceivablesManagementPUI.TODAY_DUE_OPTION);
+        actions = new Actions(driver);
+        actions.moveToElement(getElement(driver, ReceivablesManagementPUI.TODAY_DUE_OPTION)).click().perform();
     }
 
     public void inputToRefId(String refId) {
@@ -94,11 +105,13 @@ public class ReceivablesManagementPO extends BaseAction {
     public void clickToSearchReceivableButton() {
         waitForElementClickable(driver, ReceivablesManagementPUI.SEARCH_BUTTON);
         clickToElement(driver, ReceivablesManagementPUI.SEARCH_BUTTON);
+        waitLoadingIconInvisible();
     }
 
     public boolean isReceivableCreated(String refId) {
         int refIdPrecedingColumn = getListElementSize(driver, ReceivablesManagementPUI.REF_ID_PRECEDING_COLUMN);
         String refIdOrderColumn = String.valueOf(refIdPrecedingColumn + 1);
+        waitForElementVisible(driver, ReceivablesManagementPUI.REF_ID_VALUE_ON_LIST, refIdOrderColumn);
         String actualRefId = getElementText(driver, ReceivablesManagementPUI.REF_ID_VALUE_ON_LIST, refIdOrderColumn);
         System.out.println("expect: " + refId);
         System.out.println("actual: " + actualRefId);

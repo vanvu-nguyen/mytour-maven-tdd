@@ -63,7 +63,7 @@ public class EcollectionManagementPO extends BaseAction {
     public void clickToSaveMappingEcc() {
         waitForElementClickable(driver, EcollectionManagementPUI.SAVE_MAPPING_BUTTON);
         clickToElement(driver, EcollectionManagementPUI.SAVE_MAPPING_BUTTON);
-        waitForElementInvisible(driver, EcollectionManagementPUI.SAVE_MAPPING_BUTTON);
+        //waitForElementInvisible(driver, EcollectionManagementPUI.SAVE_MAPPING_BUTTON);
     }
 
     public void inputToEccSearchbox(String ecCode) {

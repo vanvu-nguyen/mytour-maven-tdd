@@ -25,7 +25,7 @@
         &lt;!&ndash;<parameter name="ipAddress" value="localhost"/>
         <parameter name="portNumber" value="4444"/>&ndash;&gt;
         <classes>
-            <class name="adminSite.infoPlus.cmsBidv.basicInformation.ContractManagement_01_CreateNewContractWithNewCustomer"/>
+            <class name="userSite.payerManagement.PayerManagement_01_CreateNewPayerAndMapEcc"/>
         </classes>
     </test>-->
 
