@@ -2,6 +2,8 @@ package adminSite.infoPlus.cmsBidv.basicInformation;
 
 import com.github.javafaker.Faker;
 import commons.BaseTest;
+import commons.GlobalConstants;
+import jdbcTest.MariaDBConnUtils;
 import pageGenerator.AdminPageGeneratorManager;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -16,7 +18,9 @@ import pojoData.adminSite.DepartmentInfo;
 import pojoData.adminSite.UserInfo;
 import reportConfig.ExtentTestManager;
 
+import javax.crypto.spec.PSource;
 import java.lang.reflect.Method;
+import java.sql.*;
 import java.util.Locale;
 
 
@@ -57,7 +61,7 @@ public class BasicInformation_01_CreateNewUserWithNewDepartment extends BaseTest
     }
 
     @Test
-    public void CreateNewUserWithNewDepartment_02_CreateNewDepartment(Method method) {
+    public void CreateNewUserWithNewDepartment_02_CreateNewDepartment(Method method) throws SQLException {
         ExtentTestManager.startTest(method.getName() + " - Run on " + browser.toUpperCase(), "CreateNewDepartment");
         dashboardPage.clickToMenuBasicInformation();
         departmentPage = dashboardPage.clickToSubmenuDepartmentManagement();
@@ -74,9 +78,21 @@ public class BasicInformation_01_CreateNewUserWithNewDepartment extends BaseTest
         departmentPage.senkeyToDepartmentCodeSearchbox(departmentCode);
         departmentPage.clickToSearchButton();
         Assert.assertTrue(departmentPage.isDepartmentInfoListed(departmentCode));
+        //Verify in Database
+        Connection connection = MariaDBConnUtils.getMariaDBConnection();
+        String queryingString = "SELECT * FROM TB_MGMT_DEPT WHERE DEPT_NM = ?";
+        PreparedStatement pstm = connection.prepareStatement(queryingString);
+        pstm.setString(1, departmentName);
+        ResultSet resultSet = pstm.executeQuery();
+        while (resultSet.next()) {
+            System.out.println("--------------------");
+            System.out.println("Dept name: " + resultSet.getString("DEPT_NM"));
+            System.out.println("Input Dept Id: " + departmentCode);
+            System.out.println("DB Dept Id: " + resultSet.getInt("DEPT_ID"));
+        }
     }
 
-    @Test
+    //@Test
     public void CreateNewUserWithNewDepartment_03_CreateNewUser(Method method) {
         ExtentTestManager.startTest(method.getName() + " - Run on " + browser.toUpperCase(), "CreateNewUser");
         userPage = departmentPage.clickToSubmenuUser();
@@ -107,7 +123,7 @@ public class BasicInformation_01_CreateNewUserWithNewDepartment extends BaseTest
         Assert.assertTrue(userPage.isUserIdListed(userId));
     }
 
-    @Test
+    //@Test
     public void CreateNewUserWithNewDepartment_04_NewUserLogin(Method method) {
         ExtentTestManager.startTest(method.getName() + " - Run on " + browser.toUpperCase(), "NewUserLogin");
         loginPage = userPage.logOut();

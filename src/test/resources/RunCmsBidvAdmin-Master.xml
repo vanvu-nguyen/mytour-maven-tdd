@@ -16,7 +16,7 @@
         <!--<parameter name="ipAddress" value="localhost"/>
         <parameter name="portNumber" value="4444"/>-->
         <classes>
-            <class name="adminSite.infoPlus.cmsBidv.basicInformation.ContractManagement_01_CreateNewContractWithNewCustomer"/>
+            <class name="adminSite.infoPlus.cmsBidv.basicInformation.BasicInformation_01_CreateNewUserWithNewDepartment"/>
         </classes>
     </test>
 
