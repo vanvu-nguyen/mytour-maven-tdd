@@ -79,7 +79,7 @@ public class BasicInformation_01_CreateNewUserWithNewDepartment extends BaseTest
         departmentPage.clickToSearchButton();
         Assert.assertTrue(departmentPage.isDepartmentInfoListed(departmentCode));
         //Verify in Database
-        Connection connection = MariaDBConnUtils.getMariaDBConnection();
+        /*Connection connection = MariaDBConnUtils.getMariaDBConnection();
         String queryingString = "SELECT * FROM TB_MGMT_DEPT WHERE DEPT_NM = ?";
         PreparedStatement pstm = connection.prepareStatement(queryingString);
         pstm.setString(1, departmentName);
@@ -88,9 +88,9 @@ public class BasicInformation_01_CreateNewUserWithNewDepartment extends BaseTest
             System.out.println("--------------------");
             System.out.println("Dept name: " + resultSet.getString("DEPT_NM"));
             System.out.println("Input Dept Id: " + departmentCode);
-            System.out.println("DB Dept Id: " + resultSet.getInt("DEPT_ID"));
+            System.out.println("DB Dept Id: " + resultSet.getInt("DEPT_ID"));*/
         }
-    }
+
 
     //@Test
     public void CreateNewUserWithNewDepartment_03_CreateNewUser(Method method) {
