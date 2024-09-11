@@ -105,7 +105,8 @@ public class BaseTest {
             case FIREFOX:
                 driver.set(new FirefoxDriver());
                 break;
-            case SAFARI: driver.set(new SafariDriver());
+            case SAFARI:
+                driver.set(new SafariDriver());
                 break;
             default: throw new RuntimeException("Browser name is not valid");
         }
@@ -219,11 +220,8 @@ public class BaseTest {
 
     @BeforeSuite
     public void deleteFileInReport() {
-        // Remove all file in ReportNG screenshot (image)
-        deleteAllFileInFolder("reportNGImage");
-
         // Remove all file in Allure attachment (json file)
-        deleteAllFileInFolder("allure-json");
+        deleteAllFileInFolder("allure-results");
     }
 
     public void deleteAllFileInFolder(String folderName) {

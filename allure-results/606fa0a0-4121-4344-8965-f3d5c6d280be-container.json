@@ -1,1 +1,0 @@
-{"uuid":"606fa0a0-4121-4344-8965-f3d5c6d280be","name":"CmsBidv","children":["0a46ac83-23ff-446b-928b-9ec712e3f7d0"],"befores":[{"name":"deleteFileInReport","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1718771137371,"stop":1718771137378}],"afters":[],"start":1718771137347,"stop":1718771178016}
