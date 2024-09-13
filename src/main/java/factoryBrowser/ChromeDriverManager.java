@@ -21,7 +21,7 @@ public class ChromeDriverManager implements BrowserFactory {
         chromeOptions.addArguments("--lang=en");
         HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
         chromePrefs.put("profile.default_content_settings.popups", 0);
-        chromePrefs.put("download.default_directory", GlobalConstants.getGlobalConstants().getDownloadPath());
+        chromePrefs.put("download.default_directory", GlobalConstants.DOWNLOAD_PATH);
         chromeOptions.setExperimentalOption("prefs", chromePrefs);
         System.setProperty("webdriver.chrome.args", "--disable-logging");
         System.setProperty("webdriver.chrome.silentOutput", "true");

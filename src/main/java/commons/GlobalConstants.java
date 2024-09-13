@@ -5,58 +5,43 @@ import lombok.Getter;
 import java.io.File;
 @Getter
 public class GlobalConstants {
-    private static GlobalConstants globalConstants;
-    private GlobalConstants() {
-    }
-    public synchronized static GlobalConstants getGlobalConstants() {
-        if (globalConstants == null) {
-            globalConstants = new GlobalConstants();
-        }
-        return globalConstants;
-    }
-
-    // Server url: dev, testing, staging, production
-
-    // Database: dev, testing, staging, production
 
     // Timeout: short, long
-    private final long shortTimeout = 5;
-    private final long longTimeout = 10;
+    public static final long SHORT_TIMEOUT = 5;
+    public static final long LONG_TIMEOUT = 10;
 
     // OS name
-    private final String osName = System.getProperty("os.name");
+    public static final String OS_NAME = System.getProperty("os.name");
 
     // Relative project path
-    private final String relativeProjectPath = System.getProperty("user.dir");
+    public static final String RELATIVE_PROJECT_PATH = System.getProperty("user.dir");
 
     // download/upload file folder
-    private final String downloadPath = relativeProjectPath + File.separator + "downloadFiles" + File.separator;
-    private final String uploadPath = relativeProjectPath + File.separator + "uploadImage" + File.separator;
+    public static final String DOWNLOAD_PATH = RELATIVE_PROJECT_PATH + File.separator + "downloadFiles" + File.separator;
+    public static final String UPLOAD_PATH = RELATIVE_PROJECT_PATH + File.separator + "uploadImage" + File.separator;
 
     // Browser extention folder
-    private final String browserExtentionPath = relativeProjectPath + File.separator + "browserExtension" + File.separator;
+    public static final String BROWSER_EXTENTION_PATH = RELATIVE_PROJECT_PATH + File.separator + "browserExtension" + File.separator;
 
     // Browser log folder
-    private final String browserLogFolder = relativeProjectPath + File.separator + "browserLog" + File.separator;
+    public static final String BROWSER_LOG_FOLDER = RELATIVE_PROJECT_PATH + File.separator + "browserLog" + File.separator;
 
-    private final String reportingImagePath = relativeProjectPath + File.separator + "reportNGImage" + File.separator;
-    private final String javaVersion = System.getProperty("java.version");
+    public static final String REPORTING_IMAGE_PATH = RELATIVE_PROJECT_PATH + File.separator + "reportNGImage" + File.separator;
+    public static final String JAVA_VERSION = System.getProperty("java.version");
 
     // Admin dev-env account
-    private final String adminUsername = "admin@naver.com";
-    private final String adminPassword = "12345";
+    public static final String ADMIN_USERNAME = "admin@naver.com";
+    public static final String ADMIN_PASSWORD = "12345";
 
     // Common Admin dev-env password
-    private final String common_password = "12345";
+    public static final String COMMON_PASSWORD = "12345";
 
     // User dev-env account
-    private final String userUsername = "bidvtest";
-    private final String userPassword = "12345";
+    public static final String USER_USERNAME = "bidvtest";
+    public static final String USER_PASSWORD = "12345";
 
     // Wordpress (DB name: )
-    private final String username = "";
-    private final String password = "";
-
-
+    public static final String USERNAME = "";
+    public static final String PASSWORD = "";
 
 }

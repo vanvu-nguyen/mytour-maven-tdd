@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="CmsBidv" parallel="tests" thread-count="2">
+<suite name="MYTOUR" parallel="none">
 
     <listeners>
         <listener class-name="commons.MethodListener"/>
@@ -16,7 +16,7 @@
         <!--<parameter name="ipAddress" value="localhost"/>
         <parameter name="portNumber" value="4444"/>-->
         <classes>
-            <class name="adminSite.basicInformation.BasicInformation_01_CreateNewUserWithNewDepartment"/>
+
         </classes>
     </test>
 
@@ -25,7 +25,7 @@
         <!--<parameter name="ipAddress" value="localhost"/>
         <parameter name="portNumber" value="4444"/>-->
         <classes>
-            <class name="adminSite.basicInformation.BasicInformation_01_CreateNewUserWithNewDepartment"/>
+
         </classes>
     </test>
 

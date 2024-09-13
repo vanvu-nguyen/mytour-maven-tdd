@@ -46,7 +46,7 @@ public class BaseTest {
                 break;*/
                 default: this.driver.set(new LocalFactory(browser).createDriver());
             }
-            driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.getGlobalConstants().getLongTimeout()));
+            driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
             switch (subSystem) {
                 case "admin": driver.get().get(getUrlWithGivenServerOnAdmin(envName));
                     break;
@@ -65,11 +65,11 @@ public class BaseTest {
         String url;
         EnvironmentList serverName = EnvironmentList.valueOf(server.toUpperCase());
         switch (serverName) {
-            case DEV: {url = "https://devbidv-admin.infocms.com.vn/";
+            case DEV: {url = "https://mytour.vn/";
                 break;}
-            case TEST: {url = "https://uat-bidv-admin.infocms.com.vn/";
+            case TEST: {url = "https://vnexpress.net/";
                 break;}
-            case STAGING: {url = "";
+            case STAGING: {url = "https://vnexpress.net/";
                 break;}
             default: throw new RuntimeException("Wrong environment name");
         }
@@ -80,11 +80,11 @@ public class BaseTest {
         String url;
         EnvironmentList serverName = EnvironmentList.valueOf(server.toUpperCase());
         switch (serverName) {
-            case DEV: {url = "https://devbidv.infocms.com.vn/account/login";
+            case DEV: {url = "https://mytour.vn/";
                 break;}
-            case TEST: {url = "https://uat-bidv.infocms.com.vn/account/login";
+            case TEST: {url = "https://vnexpress.net/";
                 break;}
-            case STAGING: {url = "";
+            case STAGING: {url = "https://vnexpress.net/";
                 break;}
             default: throw new RuntimeException("Wrong environment name");
         }
@@ -110,7 +110,7 @@ public class BaseTest {
                 break;
             default: throw new RuntimeException("Browser name is not valid");
         }
-        driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.getGlobalConstants().getLongTimeout()));
+        driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
         driver.get().get(url);
         driver.get().manage().window().maximize();
         return driver.get();
@@ -124,7 +124,7 @@ public class BaseTest {
     protected void closeBrowser(WebDriver driver) {
         String cmd = null;
         try {
-            String osName = GlobalConstants.getGlobalConstants().getOsName().toLowerCase();
+            String osName = GlobalConstants.OS_NAME.toLowerCase();
             log.info("OS name = " + osName);
 
             String driverInstanceName = driver.toString().toLowerCase();
@@ -226,7 +226,7 @@ public class BaseTest {
 
     public void deleteAllFileInFolder(String folderName) {
         try {
-            String pathFolderDownload = GlobalConstants.getGlobalConstants().getRelativeProjectPath() + File.separator + folderName;
+            String pathFolderDownload = GlobalConstants.RELATIVE_PROJECT_PATH + File.separator + folderName;
             File file = new File(pathFolderDownload);
             File[] listOfFiles = file.listFiles();
             if (listOfFiles.length != 0) {
